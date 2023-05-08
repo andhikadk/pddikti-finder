@@ -2,10 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { useRecoilState } from 'recoil';
-import { searchState } from '@/recoil/atoms';
+import { searchState, currentSearchState } from '@/recoil/atoms';
 
 const Search = () => {
   const [search, setSearch] = useRecoilState(searchState);
+  const [currentSearch, setCurrentSearch] = useRecoilState(currentSearchState);
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,6 +25,8 @@ const Search = () => {
       <input
         type='text'
         name='search'
+        value={currentSearch}
+        onChange={(e) => setCurrentSearch(e.target.value)}
         className='w-full sm:w-96 px-4 py-2 text-neutral-100 bg-neutral-700 border border-neutral-700 rounded-md sm:rounded-s-md sm:rounded-e-none focus:outline-none focus:border-neutral-500'
         placeholder='Search by [Name or NIM] min 5 characters'
         required

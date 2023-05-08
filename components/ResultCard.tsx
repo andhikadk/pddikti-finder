@@ -26,7 +26,7 @@ const ResultCard = () => {
       if (search && search.length > 4) {
         setIsLoading(true);
         setMahasiswa([]);
-        const res = await axios.get(`api/hit_mhs/${search}`);
+        const res = await axios.get(`/api/hit_mhs/${search}`);
         setIsLoading(false);
         setMahasiswa(cvMahasiswa(res.data.mahasiswa));
       }
