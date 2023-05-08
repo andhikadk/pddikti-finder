@@ -16,7 +16,7 @@ type Mahasiswa = {
   link: string;
 } | null;
 
-const ResultCard = ({ apiUrl }: { apiUrl: string | undefined }) => {
+const ResultCard = () => {
   const [search, setSearch] = useRecoilState(searchState);
   const [mahasiswa, setMahasiswa] = React.useState<Mahasiswa[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -26,13 +26,13 @@ const ResultCard = ({ apiUrl }: { apiUrl: string | undefined }) => {
       if (search && search.length > 4) {
         setIsLoading(true);
         setMahasiswa([]);
-        const res = await axios.get(`${apiUrl}/hit_mhs/${search}`);
+        const res = await axios.get(`api/hit_mhs/${search}`);
         setIsLoading(false);
         setMahasiswa(cvMahasiswa(res.data.mahasiswa));
       }
     };
     fetchMahasiswa();
-  }, [search, apiUrl]);
+  }, [search]);
 
   return (
     <div className='flex flex-col w-full mt-8 gap-3 text-white'>

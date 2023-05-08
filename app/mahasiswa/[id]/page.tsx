@@ -3,8 +3,12 @@ import clsx from 'clsx';
 import Link from 'next/link';
 
 const getDetailMahasiswa = async (id: string) => {
-  const res = await axios.get(`${process.env.BASE_URL}/detail_mhs/${id}`);
-  return res.data;
+  try {
+    const res = await axios.get(`${process.env.API_URL}/detail_mhs/${id}`);
+    return res.data;
+  } catch (error: any) {
+    console.log(error);
+  }
 };
 
 const convertYearString = (yearString: string) => {
